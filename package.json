@@ -1,0 +1,19 @@
+{
+  "name": "proyectofinal",
+  "version": "1.0.0",
+  "description": "Proyecto final del curso backend 1 de CoderHouse",
+  "main": "./src/server.js",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/server.js --bundle --platform=node --outfile=dist/server.cjs --minify",
+    "start": "node --env-file=.env dist/server.cjs",
+    "dev": "node --watch --env-file=.env src/server.js"
+  },
+  "author": "Ignacio Lencina",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "mongoose": "^8.15.0"
+  }
+}
