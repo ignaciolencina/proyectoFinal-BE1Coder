@@ -13,13 +13,14 @@ const Cart = new mongoose.Schema({
         required: true,
       },
       price: {
-        type: String,
+        type: Number,
         required: true,
       },
       quantity: {
         type: Number,
         required: true,
       },
+      _id: false,
     },
   ],
 });

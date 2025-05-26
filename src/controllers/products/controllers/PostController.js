@@ -22,6 +22,7 @@ export class PostController {
         message: "Producto agregado correctamente",
       });
     } catch (e) {
+      console.error("Error al guardar producto:", e);
       res
         .status(500)
         .json({ error: "Ocurrió un error al guardar el producto" });
