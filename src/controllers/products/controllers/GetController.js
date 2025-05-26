@@ -18,7 +18,7 @@ export class GetController {
         };
       });
 
-      res.status(201).json({
+      res.status(200).json({
         data: filteredData,
         message: "Lista de productos encontrada correctamente",
       });

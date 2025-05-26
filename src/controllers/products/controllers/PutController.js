@@ -21,7 +21,7 @@ export class PutController {
         });
         return;
       }
-      res.status(201).json({
+      res.status(200).json({
         data: null,
         message: "Producto actualizado correctamente",
       });

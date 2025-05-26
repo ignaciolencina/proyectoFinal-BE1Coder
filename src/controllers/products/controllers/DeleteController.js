@@ -10,14 +10,14 @@ export class DeleteController {
       const action = await ProductModel.deleteOne({
         _id: id,
       });
-      if (action.matchedCount === 0) {
+      if (action.deletedCount === 0) {
         res.status(404).json({
           data: null,
           message: "El producto indicado no fue encontrado",
         });
         return;
       }
-      res.status(201).json({
+      res.status(200).json({
         data: null,
         message: "Producto eliminado correctamente",
       });
@@ -25,7 +25,7 @@ export class DeleteController {
       console.error("Error al eliminar el producto:", e);
       res
         .status(500)
-        .json({ error: "Ocurrió un error al eliminar el productos" });
+        .json({ error: "Ocurrió un error al eliminar el producto" });
     }
   }
 }
