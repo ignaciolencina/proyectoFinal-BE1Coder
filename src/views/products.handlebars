@@ -1,9 +1,38 @@
-<h1>{{title}}</h1>
+<div class="products-container">
+  <h1>Productos encontrados: {{pagination.totalProducts}}</h1>
 
-<ul>
-  {{#each products}}
-    <li>
-      <strong>{{this.name}}</strong> - Precio: ${{this.price}}
-    </li>
-  {{/each}}
-</ul>
+  <table class="products-table">
+  <thead>
+    <tr>
+      <th>Categoría</th>
+      <th>Código</th>
+      <th>Producto</th>
+      <th>Precio</th>
+      <th>Agregar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr>
+      <td>{{category}}</td>
+      <td>{{code}}</td>
+      <td>{{name}}</td>
+      <td>${{price}}</td>
+      <td>Boton de agregar</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+  <div class="pagination">
+    {{#if pagination.hasPrevPage}}
+      <a href="{{currentUrl}}?page={{pagination.prevPage}}&limit={{pagination.limit}}{{#if filters.query}}&query={{filters.query}}{{/if}}{{#if filters.sort}}&sort={{filters.sort}}{{/if}}">Anterior</a>
+    {{/if}}
+    
+    <span>Página {{pagination.currentPage}} de {{pagination.totalPages}}</span>
+    
+    {{#if pagination.hasNextPage}}
+      <a href="{{currentUrl}}?page={{pagination.nextPage}}&limit={{pagination.limit}}{{#if filters.query}}&query={{filters.query}}{{/if}}{{#if filters.sort}}&sort={{filters.sort}}{{/if}}">Siguiente</a>
+    {{/if}}
+  </div>
+</div>
