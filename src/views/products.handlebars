@@ -8,17 +8,17 @@
       <th>Código</th>
       <th>Producto</th>
       <th>Precio</th>
-      <th>Agregar</th>
+      <th>Acciones</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="products-tbody">
     {{#each products}}
     <tr>
       <td>{{category}}</td>
       <td>{{code}}</td>
       <td>{{name}}</td>
       <td>${{price}}</td>
-      <td>Boton de agregar</td>
+      <td><button class="add-btn" data-id="{{id}}">Agregar al carrito</button><button class="delete-btn" data-id="{{id}}">Eliminar</button></td>
     </tr>
     {{/each}}
   </tbody>
@@ -35,4 +35,14 @@
       <a href="{{currentUrl}}?page={{pagination.nextPage}}&limit={{pagination.limit}}{{#if filters.query}}&query={{filters.query}}{{/if}}{{#if filters.sort}}&sort={{filters.sort}}{{/if}}">Siguiente</a>
     {{/if}}
   </div>
+
+
+  <div>
+    <p>Cantidad de productos en el carrito: </p>
+  <button class="send-btn">Enviar carrito</button>
+  </div>
 </div>
+
+
+
+<script src="/js/products.js"></script>

@@ -15,6 +15,7 @@
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
     "mongoose": "^8.15.0",
-    "mongoose-paginate-v2": "^1.9.0"
+    "mongoose-paginate-v2": "^1.9.0",
+    "sweetalert2": "^11.22.0"
   }
 }

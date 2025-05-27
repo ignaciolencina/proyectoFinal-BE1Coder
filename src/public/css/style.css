@@ -29,6 +29,5 @@ th {
 }
 
 .pagination{
-    position: fixed;
-    top: 510px;
+    margin-block: 20px;
 }
