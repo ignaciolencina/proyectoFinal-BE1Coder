@@ -1,5 +1,4 @@
 const deleteProductFn = async (id) => {
-  console.log("Intentando eliminar producto con ID:", id);
   const res = await fetch(`http://localhost:8080/api/v1/products/${id}`, {
     method: "DELETE",
   });
@@ -8,6 +7,20 @@ const deleteProductFn = async (id) => {
     throw new Error(
       "Ocurrió un error intentando eliminar el producto seleccionado"
     );
+  }
+};
+
+const postCartFn = async (data) => {
+  const res = await fetch(`http://localhost:8080/api/v1/carts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    throw new Error("Ocurrió un error guardando la entrada");
   }
 };
 
@@ -25,6 +38,13 @@ const addProduct = (productId, quantity) => {
   }
 
   return existingProduct ? existingProduct.quantity : quantity;
+};
+
+const $cartCount = document.getElementById("cart-count");
+
+const updateCartCount = () => {
+  const total = cart.products.reduce((acc, item) => acc + item.quantity, 0);
+  $cartCount.textContent = total;
 };
 
 const $productsTbody = document.getElementById("products-tbody");
@@ -64,6 +84,7 @@ $productsTbody.addEventListener("click", async (e) => {
     const quantity = 1;
 
     const totalQuantity = addProduct(productId, quantity);
+    updateCartCount();
 
     Swal.fire({
       title: "Agregado al carrito",
@@ -73,5 +94,32 @@ $productsTbody.addEventListener("click", async (e) => {
       icon: "success",
     });
     console.log(cart);
+  }
+});
+
+const $sendBtn = document.getElementById("send-btn");
+
+$sendBtn.addEventListener("click", async () => {
+  if (cart.products.length === 0) {
+    Swal.fire({
+      title: "Carrito vacío",
+      text: "Agrega productos al carrito antes de enviar",
+      icon: "warning",
+      showConfirmButton: true,
+    });
+    return;
+  }
+
+  try {
+    await postCartFn(cart);
+    Swal.fire({
+      title: "Carrito enviado",
+      text: "El producto fue enviado correctamente",
+      timer: 2000,
+      showConfirmButton: false,
+      icon: "success",
+    });
+  } catch (error) {
+    Swal.fire("Error", error.message, "error");
   }
 });
