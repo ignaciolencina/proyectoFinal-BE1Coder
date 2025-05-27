@@ -1,17 +1,18 @@
 import CartModel from "../../../models/cartSchema.js";
 
 export class GetController {
+  // GET /carts/ - Traer todos los carritos
   static async getCarts(_, res) {
     try {
-      const data = await CartModel.find();
+      const data = await CartModel.find().populate("products.productId");
 
       const filteredData = data.map((cart) => {
         return {
           id: cart._doc._id,
           products: cart._doc.products.map((product) => ({
-            productId: product.productId,
-            name: product.name,
-            price: product.price,
+            productId: product.productId._id,
+            name: product.productId.name,
+            price: product.productId.price,
             quantity: product.quantity,
           })),
         };
@@ -29,20 +30,28 @@ export class GetController {
     }
   }
 
+  // GET /carts/:cid - Traer solo un carrito especifico
   static async getCart(req, res) {
     const {
       params: { id },
     } = req;
 
     try {
-      const data = await CartModel.findById(id);
+      const data = await CartModel.findById(id).populate("products.productId");
+
+      if (!data) {
+        return res.status(404).json({
+          data: null,
+          message: "Carrito no encontrado",
+        });
+      }
 
       const filteredData = {
         id: data._id,
         products: data.products.map((product) => ({
-          productId: product.productId,
-          name: product.name,
-          price: product.price,
+          productId: product.productId._id,
+          name: product.productId.name,
+          price: product.productId.price,
           quantity: product.quantity,
         })),
       };

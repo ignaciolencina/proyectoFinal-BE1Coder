@@ -1,23 +1,34 @@
 import CartModel from "../../../models/cartSchema.js";
 
 export class PostController {
+  // POST /carts/ - Creacion de carrito
   static async postCart(req, res) {
     const { body } = req;
 
     const newCart = new CartModel({
       products: body.products.map((product) => ({
         productId: product.productId,
-        name: product.name,
-        price: product.price,
         quantity: product.quantity,
       })),
     });
 
     try {
-      await newCart.save();
+      const savedCart = await newCart.save();
+
+      await savedCart.populate("products.productId");
+
+      const filteredData = {
+        id: savedCart._id,
+        products: savedCart.products.map((product) => ({
+          productId: product.productId._id,
+          name: product.productId.name,
+          price: product.productId.price,
+          quantity: product.quantity,
+        })),
+      };
 
       res.status(201).json({
-        data: newCart,
+        data: filteredData,
         message: "Carrito agregado correctamente",
       });
     } catch (e) {
