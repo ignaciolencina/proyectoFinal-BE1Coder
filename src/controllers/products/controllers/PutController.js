@@ -8,21 +8,25 @@ export class PutController {
     } = req;
 
     try {
-      const action = await ProductModel.updateOne(
-        {
-          _id: id,
-        },
-        body
-      );
-      if (action.matchedCount === 0) {
-        res.status(404).json({
+      if (!body || Object.keys(body).length === 0) {
+        return res.status(400).json({
+          error: "No se proporcionaron datos para actualizar",
+        });
+      }
+
+      const updatedProduct = await ProductModel.findByIdAndUpdate(id, body, {
+        new: true,
+        runValidators: true,
+      });
+
+      if (!updatedProduct) {
+        return res.status(404).json({
           data: null,
           message: "El producto indicado no fue encontrado",
         });
-        return;
       }
       res.status(200).json({
-        data: null,
+        data: updatedProduct,
         message: "Producto actualizado correctamente",
       });
     } catch (e) {

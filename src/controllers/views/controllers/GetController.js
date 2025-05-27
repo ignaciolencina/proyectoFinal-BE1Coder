@@ -86,15 +86,15 @@ export class GetController {
 
   static async getCarts(_, res) {
     try {
-      const data = await CartModel.find();
+      const data = await CartModel.find().populate("products.productId");
 
       const carts = data.map((cart) => {
         return {
           id: cart._doc._id,
           products: cart._doc.products.map((product) => ({
-            productId: product.productId,
-            name: product.name,
-            price: product.price,
+            productId: product.productId._id,
+            name: product.productId.name,
+            price: product.productId.price,
             quantity: product.quantity,
           })),
         };
@@ -104,6 +104,7 @@ export class GetController {
         title: "Listado de Carritos",
         carts,
       });
+      console.log(carts)
     } catch (e) {
       console.error("Error al traer los carritos:", e);
       res
@@ -118,14 +119,14 @@ export class GetController {
     } = req;
 
     try {
-      const data = await CartModel.findById(id);
+      const data = await CartModel.findById(id).populate("products.productId");
 
       const oneCart = {
         id: data._id,
         products: data.products.map((product) => ({
-          productId: product.productId,
-          name: product.name,
-          price: product.price,
+          productId: product.productId._id,
+          name: product.productId.name,
+          price: product.productId.price,
           quantity: product.quantity,
         })),
       };
