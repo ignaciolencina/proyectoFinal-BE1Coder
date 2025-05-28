@@ -1,25 +1,32 @@
 <div class="container">
 <h1>{{title}}</h1>
-
+<a class="nav-link" href="http://localhost:8080/api/v1/views/products?page=1&limit=10">Volver al listado de productos</a>
+<div id="cart-container">
 {{#each carts}}
   <div class="cart">
-    <h2>ID del carrito: {{this.id}}</h2>
+    <h4>ID del carrito: {{this.id}}</h4>
 
     {{#if this.products.length}}
       <div class="products">
+        <h4>Productos:</h4>
         {{#each this.products}}
           <div class="product-item">
-            <h3>{{this.name}} - {{this.productId}}</h3>
-            <p>Precio: ${{this.price}}</p>
-            <p>Cantidad: {{this.quantity}}</p>
+            <p>{{this.name}}</p>
+            <p>${{this.price}} x {{this.quantity}}</p>
           </div>
         {{/each}}
       </div>
     {{else}}
       <p>El carrito está vacío</p>
     {{/if}}
+    <div class="line"></div>
+    <div class="cart-actions">
+      <a class="cart-details" href="http://localhost:8080/api/v1/views/carts/{{this.id}}">Ver detalle</a>
+      <button class="delete-cart-btn" data-id="{{this.id}}">Eliminar</button>
+    </div>
   </div>
 {{/each}}
+</div>
 </div>
 
 <script src="/js/carts.js"></script>

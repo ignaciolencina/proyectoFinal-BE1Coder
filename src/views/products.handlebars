@@ -18,7 +18,7 @@
       <td>{{code}}</td>
       <td>{{name}}</td>
       <td>${{price}}</td>
-      <td><button class="add-btn" data-id="{{id}}">Agregar al carrito</button><button class="delete-btn" data-id="{{id}}">Eliminar</button></td>
+      <td class="table-actions"><button class="add-btn" data-id="{{id}}">Agregar al carrito</button><button class="delete-btn" data-id="{{id}}">Eliminar</button></td>
     </tr>
     {{/each}}
   </tbody>
@@ -45,7 +45,7 @@
     <button id="send-btn">Enviar carrito</button>
   </div>
 
-  <a href="http://localhost:8080/api/v1/views/carts">Ver todos los carritos</a>
+  <a class="nav-link" href="http://localhost:8080/api/v1/views/carts">Ver todos los carritos</a>
 </div>
 
 

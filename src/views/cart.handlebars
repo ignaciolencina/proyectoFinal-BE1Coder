@@ -1,18 +1,35 @@
+<div class="container-d">
 <h1>{{title}}</h1>
-<div class="cart">
-  <h2>ID del carrito: {{oneCart.id}}</h2>
+<div id="cart-container">
+<div class="cart-d">
+  <h4>ID del carrito: {{oneCart.id}}</h4>
 
   {{#if oneCart.products.length}}
     <div class="products">
+      <h4>Productos:</h4>
       {{#each oneCart.products}}
-        <div class="product-item">
-          <h3>{{this.name}} - {{this.productId}}</h3>
-          <p>Precio: ${{this.price}}</p>
-          <p>Cantidad: {{this.quantity}}</p>
+        <div class="product-item-d">
+          <div class="detail">
+            <p>{{this.name}}</p>
+            <p>${{this.price}} x {{this.quantity}}</p>
+          </div>
+          <div>
+            <button class="delete-btn" data-product-id="{{this.productId}}" data-cart-id="{{../oneCart.id}}">Eliminar</button>
+          </div>
         </div>
       {{/each}}
     </div>
   {{else}}
     <p>El carrito está vacío</p>
   {{/if}}
+  <div class="line"></div>
+  <div class="cart-actions">
+    <button class="delete-cart-btn" data-id="{{oneCart.id}}">Eliminar carrito</button>
+  </div>
 </div>
+</div>
+<a class="nav-link" href="http://localhost:8080/api/v1/views/carts">Administración de carritos</a>
+<a class="nav-link" href="http://localhost:8080/api/v1/views/products?page=1&limit=10">Listado de productos</a>
+</div>
+
+<script src="/js/carts.js"></script>

@@ -101,10 +101,10 @@ export class GetController {
       });
 
       res.render("carts", {
-        title: "Listado de Carritos",
+        title: "Administración de Carritos",
         carts,
       });
-      console.log(carts)
+
     } catch (e) {
       console.error("Error al traer los carritos:", e);
       res
@@ -132,7 +132,7 @@ export class GetController {
       };
 
       res.render("cart", {
-        title: "Carrito",
+        title: "Detalle de Carrito",
         oneCart,
       });
     } catch (e) {

@@ -54,9 +54,11 @@ $productsTbody.addEventListener("click", async (e) => {
     const id = e.target.dataset.id;
 
     const result = await Swal.fire({
-      title: "Confirma que desea eliminar este producto?",
-      icon: "question",
+      title: "Se eliminará este producto",
+      text: "Esta acción es irreversible",
+      icon: "warning",
       confirmButtonText: "Eliminar",
+      confirmButtonColor: "#d33",
       showCancelButton: true,
       cancelButtonText: "Cancelar",
     });
@@ -118,6 +120,8 @@ $sendBtn.addEventListener("click", async () => {
       timer: 2000,
       showConfirmButton: false,
       icon: "success",
+    }).then(() => {
+      window.location.reload();
     });
   } catch (error) {
     Swal.fire("Error", error.message, "error");
