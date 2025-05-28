@@ -51,7 +51,7 @@ $cartContainer.addEventListener("click", async (e) => {
           showConfirmButton: false,
           icon: "success",
         }).then(() => {
-          window.location.reload();
+          window.location.replace("http://localhost:8080/api/v1/views/carts");
         });
       } catch (error) {
         Swal.fire("Error", error.message, "error");

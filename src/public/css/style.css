@@ -51,13 +51,21 @@ th {
   margin-block: 20px;
 }
 
+#cart-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .cart {
   width: 410px;
+  height: fit-content;
   border: 1px solid black;
   border-radius: 16px;
   padding: 16px;
   padding-top: 0;
-  margin: 16px;
+  margin-block: 16px;
+  margin-right: 16px;
 }
 
 .products {
