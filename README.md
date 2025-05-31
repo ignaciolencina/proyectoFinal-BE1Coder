@@ -173,12 +173,12 @@ En caso de no proporcionar parámetros de paginación, se aplican los valores pr
 
 **GET - Ejemplos**  
 Endpoint base: `http://localhost:8080/api/v1/views/products`
-`http://localhost:8080/api/v1/views/products?page=2`
-`http://localhost:8080/api/v1/views/products?limit=5`
-`http://localhost:8080/api/v1/views/products?sort=asc`
-`http://localhost:8080/api/v1/views/products?sort=desc`
-`http://localhost:8080/api/v1/views/products?query=auriculares`
-`http://localhost:8080/api/v1/views/products?page=2&limit=3&sort=desc&query=redragon`
+- `http://localhost:8080/api/v1/views/products?page=2`
+- `http://localhost:8080/api/v1/views/products?limit=5`
+- `http://localhost:8080/api/v1/views/products?sort=asc`
+- `http://localhost:8080/api/v1/views/products?sort=desc`
+- `http://localhost:8080/api/v1/views/products?query=auriculares`
+- `http://localhost:8080/api/v1/views/products?page=2&limit=3&sort=desc&query=redragon`
 
 ---
 
